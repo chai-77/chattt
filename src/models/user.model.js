@@ -32,7 +32,7 @@ const userSchema = new mongoose.Schema(
 );
 
 
-userSchema.pre("save", async function () {
+userSchema.pre("save", async function (next) {
     if(!this.isModified("password")) {
         return
 
@@ -42,7 +42,9 @@ userSchema.pre("save", async function () {
 
     this.password = hash;
 
-    return
+    
+
+  next();
 
 })
 
