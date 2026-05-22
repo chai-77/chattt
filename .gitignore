@@ -1,0 +1,8 @@
+.env
+gptprep.md
+prep.md
+steps.md
+
+node_modules/
+dist/
+build/
