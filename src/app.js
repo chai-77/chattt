@@ -9,6 +9,7 @@ app.use(cookieParser())
 // routes require
 const authRouter = require("./routes/auth.routes")
 const roomRouter = require("./routes/room.routes")
+const messageRouter = require("./routes/message.routes")
 
 
 
@@ -19,6 +20,6 @@ app.get("/", (req, res) => {
 // use routes
 app.use("/api/auth", authRouter)
 app.use("/api/room", roomRouter)
-
+app.use("/api/message", messageRouter)
 
 module.exports = app;
