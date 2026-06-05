@@ -20,7 +20,9 @@ const userSchema = new mongoose.Schema(
 
     password: {
       type: String,
-      required: true
+      required: true,
+      // for security
+      select:false,
     },
 
     isOnline: {
@@ -32,7 +34,7 @@ const userSchema = new mongoose.Schema(
 );
 
 
-userSchema.pre("save", async function (next) {
+userSchema.pre("save", async function () {
     if(!this.isModified("password")) {
         return
 
@@ -43,8 +45,11 @@ userSchema.pre("save", async function (next) {
     this.password = hash;
 
     
-
-  next();
+// registration worked 
+// when i removed the next from here and in the arguments of the function(next)
+// this is modern mongoose approach using async
+// if it was callbackmode it should have next i acidentally mixed them up
+// next();
 
 })
 

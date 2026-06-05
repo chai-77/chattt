@@ -1,22 +1,25 @@
 const express = require("express");
 
 
-const router = express.Router();
+const router = express.Router({ mergeParams: true });
 
 const authMiddleware = require("../middleware/auth.middleware");
+const isMemberMiddleware = require("../middleware/isMember.middleware");
 
 const messageController = require("../controllers/message.controller");
 
 
 router.post(
-    "/send",
+    "/",
     authMiddleware,
+    isMemberMiddleware,
     messageController.createMessageController
 )
 
 router.get(
-    "/:roomId",
+    "/",
     authMiddleware,
+    isMemberMiddleware,
     messageController.getRoomMessagesController
 )
 

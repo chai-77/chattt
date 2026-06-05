@@ -19,7 +19,7 @@ app.get("/", (req, res) => {
 
 // use routes
 app.use("/api/auth", authRouter)
-app.use("/api/room", roomRouter)
-app.use("/api/message", messageRouter)
+app.use("/api/rooms", roomRouter)
+app.use("/api/rooms/:roomId/messages", messageRouter)
 
 module.exports = app;

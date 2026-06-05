@@ -3,11 +3,12 @@ const messageService = require("../services/message.service");
 
 async function createMessageController(req, res) {
     try {
-        const {chatRoomId, content} = req.body;
+        const { content } = req.body;
+        const chatRoomId = req.params.roomId;
 
-        if(!chatRoomId || !content) {
+        if (!chatRoomId || !content) {
             return res.status(400).json({
-                message: "chatroomId and content required"
+                message: "roomId and content required"
             });
         }
 
@@ -18,15 +19,13 @@ async function createMessageController(req, res) {
         });
 
         return res.status(201).json(message);
+
+    } catch (err) {
+        return res.status(500).json({
+            message: err.message
+        });
     }
-catch(err) {
-    return res.status(500).json({
-        message: err.message
-    });
 }
-
-} 
-
 
 async function getRoomMessagesController(req,res) {
     try {
