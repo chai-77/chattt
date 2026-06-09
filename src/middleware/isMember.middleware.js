@@ -3,7 +3,7 @@ const roomModel = require("../models/room.model");
 async function isRoomMember(req, res, next) {
     try {
         // in the /:roomId or inside the json body
-        const roomId = req.params.roomId ;
+        const roomId = req.params.roomId;
 
         if (!roomId) {
             return res.status(400).json({
@@ -28,6 +28,11 @@ async function isRoomMember(req, res, next) {
                 message: "You are not a member of this room"
             });
         }
+
+        // console.log("roomId:", req.params.roomId);
+        // console.log("user:", req.user);
+        // console.log("room:", room);
+        // console.log("members:", room.members);
 
         // optional: attach room to request so controller doesn't refetch it
         req.room = room;

@@ -9,7 +9,7 @@ const router = express.Router();
 
 router.get('/', authMiddleware, roomController.listRoomsController ); 
 
-router.get('/:id', authMiddleware, isMemberMiddleware,roomController.getRoomByIdController) ;
+router.get('/:roomId', authMiddleware, isMemberMiddleware,roomController.getRoomByIdController) ;
 
 router.post('/create', authMiddleware, roomController.createRoomController );
 

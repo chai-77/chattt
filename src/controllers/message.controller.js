@@ -4,16 +4,16 @@ const messageService = require("../services/message.service");
 async function createMessageController(req, res) {
     try {
         const { content } = req.body;
-        const chatRoomId = req.params.roomId;
+        const RoomId = req.params.roomId;
 
-        if (!chatRoomId || !content) {
+        if (!RoomId || !content) {
             return res.status(400).json({
                 message: "roomId and content required"
             });
         }
 
         const message = await messageService.createMessage({
-            chatRoomId,
+            RoomId,
             sender: req.user._id,
             content,
         });

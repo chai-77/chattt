@@ -37,7 +37,7 @@ async function listRoomsController(req, res) {
 
 async function getRoomByIdController(req, res) {
   try {
-    const roomId = req.params.id;
+    const roomId = req.params.roomId;
 
     const room = await roomService.getRoomById(roomId);
 

@@ -1,9 +1,9 @@
 const messageModel = require("../models/message.model");
 const roomModel = require("../models/room.model");
 
-async function createMessage({chatRoomId, sender, content}) {
+async function createMessage({RoomId, sender, content}) {
 
-    const room = await roomModel.findById(chatRoomId);
+    const room = await roomModel.findById(RoomId);
 
     if(!room) {
         // console.log("here");
@@ -12,7 +12,7 @@ async function createMessage({chatRoomId, sender, content}) {
     }
 
     const message = await messageModel.create({
-        chatRoomId,
+        RoomId,
         sender,
         content,
         deliveredTo: room.members,
@@ -25,9 +25,9 @@ async function createMessage({chatRoomId, sender, content}) {
     return await message.populate("sender", "userName email");
 }
 
-async function getRoomMessages(chatRoomId) {
+async function getRoomMessages(RoomId) {
     const messages = await messageModel
-    .find({chatRoomId})
+    .find({RoomId})
     .populate("sender", "userName email")
     .sort({createdAt: 1});
 

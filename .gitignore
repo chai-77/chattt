@@ -4,6 +4,7 @@ prep.md
 steps.md
 nextsteps.md
 
+tests/
 node_modules/
 dist/
 build/
